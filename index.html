@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Xec Scripts - Bio Script Loader</title>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #071524 0%, #0a2e45 100%);
+      color: #e7eaf3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+    header {
+      font-size: 2.5rem;
+      color: #00ffe7;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      user-select: none;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    header svg {
+      width: 40px;
+      height: 40px;
+      stroke: #00ffe7;
+      fill: none;
+      stroke-width: 3;
+    }
+    textarea {
+      width: 100%;
+      max-width: 600px;
+      height: 120px;
+      border-radius: 10px;
+      border: none;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 14px;
+      resize: none;
+      background: rgba(0,255,231,0.1);
+      color: #ccf9f7;
+      margin-bottom: 1rem;
+      user-select: all;
+    }
+    button {
+      background: linear-gradient(135deg, #00ffe7, #00bfa5);
+      border: none;
+      color: #012929;
+      padding: 1rem 2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      transition: background 0.3s ease;
+      width: 100%;
+      max-width: 300px;
+      user-select: none;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #00bfa5, #00ffe7);
+    }
+    .intro {
+      max-width: 600px;
+      background: rgba(0,255,231,0.1);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      color: #a5f5eccc;
+      font-size: 1rem;
+      line-height: 1.5;
+      user-select: text;
+    }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: #1de9b6dd;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+<header aria-label="Xec Scripts branding with logo">
+  <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+    <path d="M10 54 L32 10 L54 54 M22 54 L32 34 L42 54" />
+  </svg>
+  Xec Scripts
+</header>
+
+<textarea id="scriptArea" readonly spellcheck="false" aria-readonly="true">loadstring(game:HttpGet("https://raw.githubusercontent.com/XeccScript/ZenEggSupportRamdomizerr/refs/heads/main/ZenEggSupportRandomizer.txt"))()
+</textarea>
+
+<button id="copyBtn" aria-label="Copy script to clipboard">Copy Script</button>
+
+<button id="subscribeBtn" aria-label="Subscribe to XecScripts YouTube channel">Subscribe to XecScripts</button>
+
+<div class="intro" aria-label="Introduction to Grow A Garden Scripts">
+  <h2>Introduction to Grow A Garden Scripts</h2>
+  <p>Welcome to XecScripts’ Grow A Garden scripts collection! Our scripts are designed to automate gameplay, improve efficiency, and provide utilities like auto-join, gifting, egg randomizers, and more.</p>
+  <p>Use them responsibly and enjoy a better Grow A Garden experience!</p>
+</div>
+
+<footer>© 2025 Xec Scripts. All rights reserved.</footer>
+
+<script>
+  const copyBtn = document.getElementById('copyBtn');
+  const scriptArea = document.getElementById('scriptArea');
+  copyBtn.addEventListener('click', () => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(scriptArea.value).then(() => {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => copyBtn.textContent = 'Copy Script', 1500);
+        });
+      } else {
+        // fallback for insecure context or older browsers
+        scriptArea.select();
+        scriptArea.setSelectionRange(0, 99999);
+        const successful = document.execCommand('copy');
+        if(successful) {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => copyBtn.textContent = 'Copy Script', 1500);
+        } else {
+          alert('Copy failed. Please copy manually.');
+        }
+      }
+    } catch(e) {
+      alert('Copy failed: ' + e);
+    }
+  });
+
+  const subscribeBtn = document.getElementById('subscribeBtn');
+  subscribeBtn.addEventListener('click', () => {
+    window.open('https://youtube.com/@xecscripts?si=XIEJKnirLQH9jwuC', '_blank');
+  });
+</script>
+
+</body>
+</html>
